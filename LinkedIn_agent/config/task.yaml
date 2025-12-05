@@ -1,11 +1,11 @@
 researcher_task:
   description: >
     Research and gather the latest information, news, and updates about the given topic from reliable sources.
-  expected_outputs: >
+  expected_output: >
     research_findings: A comprehensive summary of the gathered information, including key facts, statistics, and relevant sources.
 
 blog_task:
   description: >
     Create a well-structured and engaging article based on the research findings about the given topic.
-  expected_outputs: >
+  expected_output: >
     blog_article: A complete article that is informative, engaging, and well-organized, suitable for publication on a blog platform.

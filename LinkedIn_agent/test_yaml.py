@@ -31,27 +31,27 @@ class BlogCrew():
     def research_task(self)->Task:
         return Task(
             config=self.tasks_config["researcher_task"],
-            Agent=self.researcher(),
+            agent=self.researcher(),
             verbose=True
         )
     
     @task
     def blog_task(self)->Task:
         return Task(
-            config=self.task_config["blog_task"],
-            Agent=self.writer(),
+            config=self.tasks_config["blog_task"],
+            agent=self.writer(),
             verbose=True
         )
     @crew
     def crew(self)->Crew:
         return Crew(
             agents=[self.researcher(), self.writer()],
-            tasks=[self.research_task(), self.blog_task]
+            tasks=[self.research_task(), self.blog_task()]
         )
 
 
 if __name__ == "__main__":
     blog_crew=BlogCrew()
-    #result=blog_crew.crew().kickoff(inputs={"topic":"Impact of AI on Modern Education"})
-    #print(result)
-    print(blog_crew.agents_config)
+    result=blog_crew.crew().kickoff(inputs={"topic":"Impact of AI on Modern Education"})
+    print(result)
+    #print(blog_crew.tasks_config)
