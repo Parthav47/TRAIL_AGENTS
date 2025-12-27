@@ -1,0 +1,20 @@
+# Environment variables
+.env
+.env.*
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Outputs / generated files
+output/
+knowledge/
+
+# OS files
+.DS_Store
+Thumbs.db

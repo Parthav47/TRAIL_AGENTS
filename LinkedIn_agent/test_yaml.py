@@ -7,14 +7,14 @@ load_dotenv()
 
 @CrewBase
 class BlogCrew():
-
+#defined route to access config files
     agents_config="config/agent.yaml"
     tasks_config="config/task.yaml"
 
     @agent
     def researcher(self)->Agent:
         return Agent(
-            config=self.agents_config['research_agent'],
+            config=self.agents_config['research_agent'], # ignore self.agents_config[index] auto understanding
             tools=[ TavilySearchTool(), ScrapeWebsiteTool() ],
             verbose =True
         )
@@ -52,6 +52,6 @@ class BlogCrew():
 
 if __name__ == "__main__":
     blog_crew=BlogCrew()
-    result=blog_crew.crew().kickoff(inputs={"topic":"Impact of AI on Modern Education"})
+    result=blog_crew.crew().kickoff(inputs={"topic":"Impact of AI on Modern Education"}) #output comes in different format good to have variable to store.
     print(result)
     #print(blog_crew.tasks_config)

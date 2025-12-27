@@ -1,0 +1,92 @@
+content_strategy_task:
+  description: >
+    Analyze the provided theme '{theme}' and decide how the story should be told
+    so that it feels natural, engaging, and safe for readers.
+    Identify the story type (for example: celebrity/gossip, sports victory,
+    tech/science update, tragedy, policy/business, health), the dominant
+    sentiment (positive, negative, neutral, or mixed), and a single clear tone
+    the final article must follow from start to finish.
+    Then design a content strategy that specifies:
+    - how much background, key moments, quotes/reactions, and impact/analysis
+      the article should contain;
+    - which kinds of content are allowed or forbidden (especially around
+      statistics, speculation, and sensitive details);
+    - which narrative elements are mandatory for this story;
+    - the overall sensitivity level and any wording precautions needed to
+      avoid vulgarity, defamation, hate, or sensationalism.
+  expected_output: >
+    A concise but complete content strategy document that clearly states:
+    story_type, sentiment, tone_label, content_proportions, content_rules,
+    required_elements, and sensitivity_level, written so it can be saved at
+    "output/draft/1_content_strategy.txt" and directly followed by the
+    Designer, Researcher, and Writer agents without re-reading the raw theme.
+  agent: content_strategist_agent
+
+
+design_task:
+  description: >
+    Using the content strategy produced by the Content Strategist, design a
+    full article blueprint that the Writer can follow without guessing.
+    Create:
+    - a clear SEO-friendly title and an informative subtitle;
+    - an ordered list of sections, each with:
+      * a section heading,
+      * an approximate word target,
+      * the content bucket it belongs to (background, key_moments,
+        quotes/reactions, impact/analysis);
+    - an overall word target that matches the proportions defined in the
+      strategy;
+    - notes on where key narrative elements (tension, turning points,
+      explanations, context, etc.) should appear.
+    Do not reinterpret the raw theme; rely on the strategist’s strategy.
+  expected_output: >
+    A structured article blueprint that can be saved at
+    "output/draft/2_design_brief.txt", including title, subtitle, ordered
+    section list with word targets and content buckets, and any placement notes
+    needed so that the Researcher and Writer can follow it directly.
+  agent: designer_agent
+
+
+research_task:
+  description: >
+    Using the content strategy and article blueprint, perform focused research
+    on the web to gather only the information that is allowed and needed for
+    this story.
+    Follow the strategy’s content_rules and sensitivity_level, and respect the
+    design’s section structure and word targets.
+    For each section in the blueprint, collect:
+    - background facts and context;
+    - key moments or events;
+    - quotes or reactions (only from reliable sources and only if allowed);
+    - impact or analysis where appropriate.
+    Cite every fact and quote with URLs, avoid speculation when it is
+    forbidden, and avoid statistics when the strategy says stats are not
+    allowed (for example, in sensitive gossip).
+  expected_output: >
+    A well-organized research document that can be saved at
+    "output/draft/3_research_facts.md", structured by the blueprint’s sections,
+    containing bullet-point facts, quotes with sources, and a final sources
+    list, all consistent with the strategy’s rules and sensitivity constraints.
+  agent: researcher_agent
+
+
+write_task:
+  description: >
+    Using the content strategy, article blueprint, and research document, write
+    a complete, engaging news-style article.
+    Follow exactly:
+    - the tone and rules from the Content Strategist,
+    - the structure, section order, and word balance from the Designer,
+    - the verified facts and quotes from the Researcher (never invent facts).
+    After writing the article, perform a safety and style pass:
+    - remove or rephrase any vulgar, defamatory, hateful, or needlessly
+      graphic language;
+    - ensure wording is polite, neutral, and legally safe;
+    - keep paragraphs short and readable, using bullets only where helpful.
+    The final article should be ready to publish without further editing.
+  expected_output: >
+    A polished, publish-ready Markdown article saved at
+    "output/draft/4_final_article.md", with title, subtitle, clearly separated
+    sections that follow the blueprint, an appropriate tone that matches the
+    strategy, and a short sources section reflecting the research.
+  agent: writer_agent
